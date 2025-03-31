@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Quizzes under {{ chapter.name }}</h2>
+<ul class="list-group">
+    {% for quiz in quizzes %}
+        <li class="list-group-item">
+            <a href="{{ url_for('attempt_quiz', quiz_id=quiz.id) }}">{{ quiz.chapter.name }} Quiz ({{ quiz.date_of_quiz }})</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

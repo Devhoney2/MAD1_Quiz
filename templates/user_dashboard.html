@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>User Dashboard</h2>
+<h3>Available Subjects</h3>
+<ul class="list-group">
+    {% for subject in subjects %}
+        <li class="list-group-item">
+            <a href="{{ url_for('user_chapters', subject_id=subject.id) }}">{{ subject.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+<h3>Attempted Quizzes</h3>
+<ul class="list-group">
+    {% for score in attempted_quizzes %}
+        <li class="list-group-item">
+            <a href="{{ url_for('quiz_result', score_id=score.id) }}">{{ score.quiz.chapter.name }} Quiz</a>
+            - Score: {{ score.total_scored }} / {{ score.quiz.questions|length }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center my-5">
+    <div class="col-md-8 text-center">
+        <!-- Logo -->
+        
+        
+        <div class="card shadow-lg border-0 rounded-lg">
+            <div class="card-body p-5">
+                <h2 class="card-title text-center mb-4">Welcome to Quizmo</h2>
+                <p class="card-text lead text-center">The smart way to create and manage quizzes</p>
+                
+                <hr class="my-4">
+                
+                <div class="text-center">
+                    {% if 'user_id' not in session %}
+                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg px-4 me-sm-3">Login</a>
+                            <a href="{{ url_for('register') }}" class="btn btn-outline-secondary btn-lg px-4">Register</a>
+                        </div>
+                    {% else %}
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            {% if is_admin() %}
+                                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-success btn-lg">Go to Dashboard</a>
+                            {% else %}
+                                <a href="{{ url_for('user_dashboard') }}" class="btn btn-success btn-lg">Go to Dashboard</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="bi bi-book"></i> Learn</h5>
+                        <p class="card-text">Great Variety of subjects and chapters.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="bi bi-pencil"></i> Test</h5>
+                        <p class="card-text">Take quizzes to test your knowledge.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="bi bi-graph-up"></i> Improve</h5>
+                        <p class="card-text">Track your progress and improve your scores.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

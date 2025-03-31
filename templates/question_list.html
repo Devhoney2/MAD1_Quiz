@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Questions for {{ quiz.chapter.name }} Quiz</h2>
+<a href="{{ url_for('add_question', quiz_id=quiz.id) }}" class="btn btn-primary mb-3">Add Question</a>
+<ul class="list-group">
+    {% for question in questions %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ question.question_statement }}
+            <div>
+                <a href="{{ url_for('edit_question', id=question.id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                <form action="{{ url_for('delete_question', id=question.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

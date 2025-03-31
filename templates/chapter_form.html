@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ 'Add' if not chapter else 'Edit' }} Chapter</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Chapter Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{ chapter.name if chapter else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description">{{ chapter.description if chapter else '' }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="subject_id">Subject</label>
+        <select class="form-control" id="subject_id" name="subject_id" required>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}" {% if chapter and chapter.subject_id == subject.id %}selected{% endif %}>{{ subject.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

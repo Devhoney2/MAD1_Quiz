@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ 'Add' if not subject else 'Edit' }} Subject</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Subject Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{ subject.name if subject else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description">{{ subject.description if subject else '' }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

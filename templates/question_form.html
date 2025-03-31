@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ 'Add' if not question else 'Edit' }} Question</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="question_statement">Question Statement</label>
+        <textarea class="form-control" id="question_statement" name="question_statement" required>{{ question.question_statement if question else '' }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="option1">Option 1</label>
+        <input type="text" class="form-control" id="option1" name="option1" value="{{ question.option1 if question else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="option2">Option 2</label>
+        <input type="text" class="form-control" id="option2" name="option2" value="{{ question.option2 if question else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="option3">Option 3</label>
+        <input type="text" class="form-control" id="option3" name="option3" value="{{ question.option3 if question else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="option4">Option 4</label>
+        <input type="text" class="form-control" id="option4" name="option4" value="{{ question.option4 if question else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="correct_option">Correct Option (1-4)</label>
+        <input type="number" class="form-control" id="correct_option" name="correct_option" value="{{ question.correct_option if question else '' }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

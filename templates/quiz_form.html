@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ 'Add' if not quiz else 'Edit' }} Quiz</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="chapter_id">Chapter</label>
+        <select class="form-control" id="chapter_id" name="chapter_id" required>
+            {% for chapter in chapters %}
+                <option value="{{ chapter.id }}" {% if quiz and quiz.chapter_id == chapter.id %}selected{% endif %}>{{ chapter.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="date_of_quiz">Date of Quiz</label>
+        <input type="date" class="form-control" id="date_of_quiz" name="date_of_quiz" value="{{ quiz.date_of_quiz if quiz else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="time_duration">Time Duration (HH:MM)</label>
+        <input type="text" class="form-control" id="time_duration" name="time_duration" value="{{ quiz.time_duration if quiz else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="remarks">Remarks</label>
+        <textarea class="form-control" id="remarks" name="remarks">{{ quiz.remarks if quiz else '' }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}
